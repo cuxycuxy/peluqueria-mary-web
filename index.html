@@ -374,14 +374,30 @@
 
     <div class="info-card">
       <div class="info-card-icon">
+        <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      </div>
+      <div>
+        <div class="info-card-label">Dirección</div>
+        <div class="info-card-value">
+          Carrer Ample, 36<br>Burriana
+        </div>
+      </div>
+    </div>
+
+    <div class="info-card">
+      <div class="info-card-icon">
         <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
       </div>
       <div>
         <div class="info-card-label">Horario</div>
         <div class="info-card-value">
           <div class="horario-row">
-            <span class="horario-dia">Lun – Sáb</span>
-            <span>08:00–21:00</span>
+            <span class="horario-dia">Lun, Mié – Sáb</span>
+            <span>09:30–14:00</span>
+          </div>
+          <div class="horario-row">
+            <span class="horario-dia">Martes</span>
+            <span>Cerrado</span>
           </div>
           <div class="horario-row">
             <span class="horario-dia">Domingo</span>
@@ -470,7 +486,8 @@
     calYear  = hoy.getFullYear();
     calMonth = hoy.getMonth();
     renderCalendar();
-    if (hoy.getDay() !== 0) {
+    const hoyDow = hoy.getDay();
+    if (hoyDow !== 0 && hoyDow !== 2) { // no preseleccionar si es domingo o martes
       seleccionarFecha(`${calYear}-${pad(calMonth+1)}-${pad(hoy.getDate())}`);
     }
   }
@@ -506,13 +523,13 @@
       const fechaStr = `${calYear}-${pad(calMonth+1)}-${pad(d)}`;
       const dow      = fecha.getDay();
       const isPasado = fecha < hoy;
-      const isDomingo = dow === 0;
+      const isCerrado = dow === 0 || dow === 2; // domingo y martes cerrado
       const isHoy    = fecha.getTime() === hoy.getTime();
       const isSel    = fechaStr === fechaSeleccionada;
 
       const el = document.createElement("div");
       el.className = "cal-day";
-      if (isPasado || isDomingo) {
+      if (isPasado || isCerrado) {
         el.classList.add("disabled");
       } else {
         el.addEventListener("click", () => seleccionarFecha(fechaStr));
