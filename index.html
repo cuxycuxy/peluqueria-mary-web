@@ -162,6 +162,13 @@
     .horario-row { display: flex; justify-content: space-between; gap: 8px; font-size: 14px; margin-bottom: 4px; }
     .horario-dia { color: var(--text-muted); }
 
+    /* ── MAPA ── */
+    .map-wrap {
+      border-radius: 12px; overflow: hidden;
+      border: 1px solid var(--border); line-height: 0;
+    }
+    .map-wrap iframe { width: 100%; height: 300px; border: 0; }
+
     /* ── RESERVA ── */
     .reserva-wrap {
       background: var(--card); border: 1px solid var(--border);
@@ -410,8 +417,23 @@
   </div>
 </div>
 
+<!-- MAPA -->
+<div class="section" style="padding-top: 0;">
+  <div class="section-eyebrow">Cómo llegar</div>
+  <div class="section-title">Ubicación</div>
+  <div class="section-rule"></div>
+  <div class="map-wrap">
+    <iframe
+      src="https://maps.google.com/maps?q=Carrer+Ample+36+Burriana+Castell%C3%B3+Spain&output=embed"
+      allowfullscreen=""
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+    ></iframe>
+  </div>
+</div>
+
 <!-- RESERVA -->
-<div class="section" id="reservar" style="padding-top: 0;">
+<div class="section" id="reservar">
   <div class="section-eyebrow">Reserva online</div>
   <div class="section-title">Pide tu cita</div>
   <div class="section-rule"></div>
