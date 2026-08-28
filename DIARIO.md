@@ -34,5 +34,10 @@ Web pública de reservas para Peluquería Mary, adaptada desde `barberia-puerto-
 
 **Pendiente:**
 - Fotos reales del local cuando Mary las proporcione.
-- Mapa de Google (la dirección ya está desde este mismo día, pero el bloque de mapa nunca se añadió — Puerto sí lo tiene).
 - Dominio propio (Mary sigue en `peluqueriamary.cuxy.app`, no se le ha ofrecido/comprado uno propio como a Puerto).
+
+---
+
+## 28/08/2026 — Mapa de Google añadido
+
+Comparando con Puerto salió a la luz que faltaba el mapa aunque la dirección estaba desde el 10/07. Añadido `.map-wrap` + iframe de Google Maps (Carrer Ample, 36, Burriana), mismo patrón que Puerto adaptado al tema claro/teal de Mary. De paso, `DIARIO.md` reescrito con el historial real del proyecto (era una copia sin editar del de Puerto desde el fork).
