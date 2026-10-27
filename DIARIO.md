@@ -1,5 +1,23 @@
 # DIARIO — peluqueria-mary-web
 
+## 27/10/2026 — Fallo de seguridad: .git expuesto en producción (heredado de barberia-puerto-web)
+
+Encontrado al arreglar lo mismo en `barberia-puerto-web` (de donde se hizo fork este proyecto,
+ver su propio `DIARIO.md` para el detalle completo): `wrangler.jsonc` sirve la raíz entera del
+proyecto como web pública (`"directory": "."`), y sin `.assetsignore` Cloudflare Workers subía
+también `.git/` y `.wrangler/` — confirmado con `curl` que `peluqueriamary.cuxy.app/.git/config`
+devolvía 200 con el contenido real. Ya estaba así desde el primer despliegue, heredado del fork.
+
+**Arreglado**: mismo `.assetsignore` (excluye `.git`, `.wrangler`, `node_modules`, `DIARIO.md`),
+`.wrangler/` añadido al `.gitignore`. Verificado tras el redeploy: la URL directa de
+`*.workers.dev` dio 404 al momento; el dominio `peluqueriamary.cuxy.app` tardó un poco en
+reflejarlo por caché de Cloudflare (normal, no indica que el arreglo fallara — confirmado luego
+con 404 también ahí).
+
+Repo de GitHub (`cuxycuxy/peluqueria-mary-web`) es público — comprobado el historial completo
+buscando nombres de archivo tipo `.env`/`credential`/`service_account`/`token`/`secret`/`key`: no
+hay ninguno, sitio estático simple sin backend. Riesgo real descartado.
+
 ## 09/07/2026 — Creación del proyecto (fork de barberia-puerto-web)
 
 Web pública de reservas para Peluquería Mary, adaptada desde `barberia-puerto-web` (mismo motor de reservas).
